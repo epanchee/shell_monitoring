@@ -4,6 +4,7 @@
 . "$(dirname "$0")/config"
 
 perform_check() {
+  prog="${prog#*/}"
 	local flag="$FLAGS_DIR/${prog%.*}"
 	local ret
 
