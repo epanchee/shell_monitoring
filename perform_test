@@ -4,15 +4,18 @@
 . "$(dirname "$0")/config"
 
 perform_check() {
-	prog="${prog#*/}"
-	local flag="$FLAGS_DIR/${prog%.*}"
+  local prog="${1#*/}"
+  prog="${prog%.*}"
+	local flag="$FLAGS_DIR/$prog"
+	local log="$LOG_DIR/$prog.log"
 	local ret
 
-	check
+  echo "$(date "+%Y-%m-%d %H:%M:%S"): START $prog" >> "$log"
+	check >> "$log"
 	ret=$?
 	if [ $ret = 1 ]; then
-	  fix
-	  check
+	  fix >> "$log"
+	  check >> "$log"
 	  ret=$?
 	  [ $ret = 0 ] && tg_say.sh "Возникла ошибка: $error_msg. Но проблема была автоматически исправлена." && return 0
 	fi
@@ -21,8 +24,9 @@ perform_check() {
         	tg_say.sh "$error_msg" && touch "$flag"
 	elif [ $ret = 0 -a -f "$flag" ]; then
         	rm "$flag" && tg_say.sh "$info_msg"
-
 	fi
+	echo -e "$(date "+%Y-%m-%d %H:%M:%S"): END $prog\n" >> "$log"
+
 	return 0
 }
 
@@ -40,8 +44,9 @@ error_msg="$prog: fail"
 info_msg="$prog: ok"
 
 mkdir -p "$FLAGS_DIR"
+mkdir -p "$LOG_DIR"
 
 . "$WORKDIR/$prog"
-perform_check
+perform_check "$prog"
 
 exit 0

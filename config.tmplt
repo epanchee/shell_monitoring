@@ -13,3 +13,4 @@ WORKDIR="$(pwd)"
 export WORKDIR
 export PATH="$WORKDIR:$PATH"
 export FLAGS_DIR="$WORKDIR/checks"
+export LOG_DIR="$WORKDIR/log"
