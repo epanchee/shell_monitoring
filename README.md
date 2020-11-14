@@ -14,6 +14,10 @@ Raspberry Pi.
 Пока что ничего сложного в скриптах нет, поэтому, думаю, они должны работать
 на любой системе, на которой есть {bash | sh | ash} shell.
 
+#### Зависимости
+
+**curl**
+
 #### Ок, как запустить?
 
 Получите токен и chat id с помощью [инструкции](https://bitbucket.org/padavan/rt-n56u/wiki/RU/Отправка%20сообщений%20в%20Telegram).
@@ -27,7 +31,7 @@ cp -p config.tmplt config
 
 Добавить строку в crontab.
 ```shell script
-*/1 * * * * ${MY_FOLDER}periodic_check.sh
+*/1 * * * * ${MY_FOLDER}/periodic_check.sh
 ```
 где ```$MY_FOLDER``` - путь до папки со скриптами.
 
