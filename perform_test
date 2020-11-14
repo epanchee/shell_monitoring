@@ -9,9 +9,11 @@ perform_check() {
 
 	check
 	ret=$?
-	[ $ret = 1 ] && fix
-	check
-	ret=$?
+	if [ $ret = 1 ]; then
+	  fix
+	  check
+	  ret=$?
+	fi
 
 	if [ $ret = 1 -a ! -f "$flag" ]; then
         	tg_say.sh "$error_msg" && touch "$flag"
