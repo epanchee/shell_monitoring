@@ -41,4 +41,4 @@ cp -p config.tmplt config
 ssh-copy-id root@PI_ADDR
 ```
 или ручками копируем содержимое ```cat ~/.ssh/id_rsa.pub``` и добавляем на 
-Raspberry Pi в файл ```~~/.ssh/authorized_keys```.
+Raspberry Pi в файл ```~/.ssh/authorized_keys```.
