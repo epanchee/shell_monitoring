@@ -12,6 +12,6 @@ check() {
 }
 
 fix() {
-  ssh root@"$PI_ADDR" -o ConnectTimeout=2 mount -o remount,rw /dev/sda1 && return 0
+  ssh root@"$PI_ADDR" -o ConnectTimeout=2 mount -o remount,rw "$FS_DEV" && return 0
   return 1
 }

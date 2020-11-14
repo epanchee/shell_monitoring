@@ -1,8 +1,9 @@
 #!/bin/bash
 
 # user defined constants
-export PI_ADDR=''
-export FS_ROOT=''
+export PI_ADDR='' # адрес Raspberyy PI
+export FS_ROOT='' # точка монтирования вашего диска
+export FS_DEV=''  # название устройства диска, например /dev/sda1
 # получить токен и ид чата: https://bitbucket.org/padavan/rt-n56u/wiki/RU/Отправка%20сообщений%20в%20Telegram
 export API_TOKEN=''
 export CHAT_ID=''
