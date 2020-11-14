@@ -11,3 +11,8 @@ check() {
   ssh -o ConnectTimeout=2 root@"$PI_ADDR" df -h | grep -q "$FS_ROOT" && return 0
   return 1
 }
+
+fix() {
+  ssh root@"$PI_ADDR" -o ConnectTimeout=2 mount -o remount,rw "$FS_DEV" && return 0
+  return 1
+}
