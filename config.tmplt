@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# user defined constants
+export PI_ADDR=''
+export FS_ROOT=''
+# получить токен и ид чата: https://bitbucket.org/padavan/rt-n56u/wiki/RU/Отправка%20сообщений%20в%20Telegram
+export API_TOKEN=''
+export CHAT_ID=''
+
+# monitoring constants
+WORKDIR="$(pwd)"
+export WORKDIR
+export PATH="$WORKDIR:$PATH"
+export FLAGS_DIR="$WORKDIR/checks"
