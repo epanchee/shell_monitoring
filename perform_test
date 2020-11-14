@@ -1,0 +1,43 @@
+#!/bin/bash
+
+# shellcheck source=/dev/null
+. "$(dirname "$0")/config"
+
+perform_check() {
+	local flag="$FLAGS_DIR/${prog%.*}"
+	local ret
+
+	check
+	ret=$?
+	[ $ret = 1 ] && fix
+	check
+	ret=$?
+
+	if [ $ret = 1 -a ! -f "$flag" ]; then
+        	tg_say.sh "$error_msg" && touch "$flag"
+	elif [ $ret = 0 -a -f "$flag" ]; then
+        	rm "$flag" && tg_say.sh "$info_msg"
+
+	fi
+	return 0
+}
+
+check() {
+  return 0
+}
+
+fix() {
+  return 0
+}
+
+prog="$1"
+[ -z "$prog" ] && exit 1
+error_msg="$prog: fail"
+info_msg="$prog: ok"
+
+mkdir -p "$FLAGS_DIR"
+
+. "$WORKDIR/$prog"
+perform_check
+
+exit 0

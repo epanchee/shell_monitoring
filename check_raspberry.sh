@@ -3,4 +3,9 @@
 # shellcheck source=/dev/null
 . "$(dirname "$0")/config"
 
-ping -c 1 -W 1 "$PI_ADDR" &>/dev/null
+error_msg='Raspberry Pi не пингуется'
+info_msg='Raspberry Pi теперь пингуется'
+
+check() {
+  ping -c 1 -W 1 "$PI_ADDR" &>/dev/null
+}
