@@ -6,28 +6,28 @@
 perform_check() {
   local prog="${1#*/}"
   prog="${prog%.*}"
-	local flag="$FLAGS_DIR/$prog"
-	local log="$LOG_DIR/$prog.log"
-	local ret
+  local flag="$FLAGS_DIR/$prog"
+  local log="$LOG_DIR/$prog.log"
+  local ret
 
   echo "$(date "+%Y-%m-%d %H:%M:%S"): START $prog" >> "$log"
-	check >> "$log"
-	ret=$?
-	if [ $ret = 1 ]; then
-	  fix >> "$log"
-	  check >> "$log"
-	  ret=$?
-	  [ $ret = 0 ] && tg_say.sh "Возникла ошибка: $error_msg. Но проблема была автоматически исправлена." && return 0
-	fi
+  check >> "$log"
+  ret=$?
+  if [ $ret = 1 ]; then
+    fix >> "$log"
+    check >> "$log"
+    ret=$?
+    [ $ret = 0 ] && tg_say.sh "Возникла ошибка: $error_msg. Но проблема была автоматически исправлена." && return 0
+  fi
 
-	if [ $ret = 1 -a ! -f "$flag" ]; then
-        	tg_say.sh "$error_msg" && touch "$flag"
-	elif [ $ret = 0 -a -f "$flag" ]; then
-        	rm "$flag" && tg_say.sh "$info_msg"
-	fi
-	echo -e "$(date "+%Y-%m-%d %H:%M:%S"): END $prog\n" >> "$log"
+  if [ $ret = 1 -a ! -f "$flag" ]; then
+          tg_say.sh "$error_msg" && touch "$flag"
+  elif [ $ret = 0 -a -f "$flag" ]; then
+          rm "$flag" && tg_say.sh "$info_msg"
+  fi
+  echo -e "$(date "+%Y-%m-%d %H:%M:%S"): END $prog\n" >> "$log"
 
-	return 0
+  return 0
 }
 
 check() {
