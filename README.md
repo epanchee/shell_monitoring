@@ -30,3 +30,10 @@ cp -p config.tmplt config
 */1 * * * * ${MY_FOLDER}periodic_check.sh
 ```
 где ```$MY_FOLDER``` - путь до папки со скриптами.
+
+Добавить авторизацию с роутера на Pi по ключу
+```shell script
+ssh-copy-id root@PI_ADDR
+```
+или ручками копируем содержимое ```cat ~/.ssh/id_rsa.pub``` и добавляем на 
+Raspberry Pi в файл ```~~/.ssh/authorized_keys```.
