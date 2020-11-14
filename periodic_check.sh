@@ -7,7 +7,7 @@ shopt -s nullglob
 
 for i in tests/*
 do
-  perform_test "$i"
+  [ -f "$i" ] && perform_test "$i"
 done
 
 exit 0
