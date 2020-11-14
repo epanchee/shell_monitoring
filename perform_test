@@ -11,14 +11,16 @@ perform_check() {
   local ret
 
   echo "$(date "+%Y-%m-%d %H:%M:%S"): START $prog" >> "$log"
-  check >> "$log"
+  set -x
+  { check 2>&1; } >> "$log"
   ret=$?
   if [ $ret = 1 ]; then
-    fix >> "$log"
-    check >> "$log"
+    { fix 2>&1; }>> "$log"
+    { check 2>&1; }>> "$log"
     ret=$?
     [ $ret = 0 ] && tg_say.sh "Возникла ошибка: $error_msg. Но проблема была автоматически исправлена." && return 0
   fi
+  set +x
 
   if [ $ret = 1 -a ! -f "$flag" ]; then
           tg_say.sh "$error_msg" && touch "$flag"

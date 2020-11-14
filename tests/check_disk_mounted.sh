@@ -8,7 +8,7 @@ info_msg='Диск Toshiba восстановлен'
 
 check() {
   set -o pipefail
-  ssh -o ConnectTimeout=2 root@"$PI_ADDR" df -h | grep -q "$FS_ROOT" && return 0
+  ssh -o ConnectTimeout=2 root@"$PI_ADDR" df -h | grep "$FS_ROOT" && return 0
   return 1
 }
 
