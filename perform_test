@@ -15,8 +15,8 @@ perform_check() {
   { check 2>&1; } >> "$log"
   ret=$?
   if [ $ret = 1 ]; then
-    { fix 2>&1; }>> "$log"
-    { check 2>&1; }>> "$log"
+    { fix 2>&1; } >> "$log"
+    { check 2>&1; } >> "$log"
     ret=$?
     [ $ret = 0 ] && tg_say.sh "Возникла ошибка: $error_msg. Но проблема была автоматически исправлена." && return 0
   fi
