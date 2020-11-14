@@ -14,6 +14,7 @@ perform_check() {
 	  fix
 	  check
 	  ret=$?
+	  [ $ret = 0 ] && tg_say.sh "Возникла ошибка: $error_msg. Но проблема была автоматически исправлена." && return 0
 	fi
 
 	if [ $ret = 1 -a ! -f "$flag" ]; then
