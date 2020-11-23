@@ -10,7 +10,7 @@ now_hour="$(date +%H)"
 now=$(date +%s)
 for log in "$LOG_DIR/"*; do
   mod_time="$(stat -c %z "$log")"
-  modhour="$(date +%H "${mod_time%.*}")"
+  modhour="$(date +%H -d "${mod_time%.*}")"
   # shellcheck disable=SC2219
   let diff=$now_hour-$modhour
   [ -f "$log" -a $diff -ne 0 ] && mv "$log" "$LOG_DIR/old/${log##*/}.$now"
