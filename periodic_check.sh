@@ -23,7 +23,7 @@ for old_log in "$LOG_DIR/old/"*; do
   [ -f "$old_log" -a $diff -gt "${LOG_ROTATION_TIME:-43200}" ] && rm "$old_log"
 done
 
-for i in tests/*
+[ "${PASS:-0}" = '0' ] && for i in tests/*
 do
   [ -f "$i" ] && perform_test "$i"
 done

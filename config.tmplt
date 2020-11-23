@@ -5,6 +5,7 @@ export PI_ADDR='' # адрес Raspberry PI
 export FS_ROOT='' # точка монтирования вашего диска
 export FS_DEV=''  # название устройства диска, например /dev/sda1
 export SERVICES='' # список сервисов, которые нужно мониторить. разделяются пробелом
+export PASS='0' # если необходимо на время отключить мониторинг
 # получить токен и ид чата: https://bitbucket.org/padavan/rt-n56u/wiki/RU/Отправка%20сообщений%20в%20Telegram
 export API_TOKEN=''
 export CHAT_ID=''
