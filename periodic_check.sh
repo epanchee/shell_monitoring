@@ -13,7 +13,6 @@ for log in "$LOG_DIR/"*; do
   modhour="$(date +%H "${mod_time%.*}")"
   # shellcheck disable=SC2219
   let diff=$now_hour-$modhour
-  echo "$log diff $diff"
   [ -f "$log" -a $diff -ne 0 ] && mv "$log" "$LOG_DIR/old/${log##*/}.$now"
 done
 
