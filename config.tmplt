@@ -16,3 +16,6 @@ export WORKDIR
 export PATH="$WORKDIR:$PATH"
 export FLAGS_DIR="$WORKDIR/checks"
 export LOG_DIR="$WORKDIR/log"
+
+# custom functions
+. "$(dirname "$0")/functions"

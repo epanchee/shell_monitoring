@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# используется ТОЛЬКО как библиотека
+
+_ssh() {
+	local ret
+	ssh -o ConnectTimeout=2 root@"$PI_ADDR" $@ && ret=$?
+  if [ "$ret" = 255 -o "$ret" = 0 ]; then
+  	[ "$ret" = 255 ] && echo "ssh-соединение завершилось по таймауту"
+  	return 0
+  fi
+  return 1
+}
+
+export _ssh

@@ -7,12 +7,9 @@ error_msg='Диск Toshiba на Raspberry Pi куда-то пропал'
 info_msg='Диск Toshiba восстановлен'
 
 check() {
-  set -o pipefail
-  ssh -o ConnectTimeout=2 root@"$PI_ADDR" df -h | grep "$FS_ROOT" && return 0
-  return 1
+  _ssh "df -h | grep $FS_ROOT"
 }
 
 fix() {
-  ssh root@"$PI_ADDR" -o ConnectTimeout=2 mount -o remount,rw "$FS_DEV" && return 0
-  return 1
+	_ssh "mount -o remount,rw $FS_DEV"
 }
